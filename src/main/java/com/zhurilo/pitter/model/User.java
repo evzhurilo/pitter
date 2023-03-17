@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -29,6 +30,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "Date of birth")
+    private Date dateOfBirth;
 }

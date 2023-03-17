@@ -9,29 +9,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
+
 @Controller
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/registration")
+    @GetMapping("/home/signup")
     public String showAddUserForm(Model model) {
-        model.addAttribute("user", new User());
-        return "registration";
+        model.addAttribute("title","Registration");
+        return "sign-up";
     }
 
-    @PostMapping("/registration")
-    public String signupSubmit(@RequestParam String name, @RequestParam String surname, @RequestParam Integer age,
+    @PostMapping("/home/signup")
+    public String signupSubmit(@RequestParam String name, @RequestParam String surname, @RequestParam Date dateOfBirth,
                                @RequestParam String email, @RequestParam String password) {
         User user = new User();
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);
-        user.setAge(age);
+        user.setDateOfBirth(dateOfBirth);
         user.setPassword(password);
         userRepository.save(user);
-        return "registration";
+        return "redirect:/home";
     }
+
 
 }
