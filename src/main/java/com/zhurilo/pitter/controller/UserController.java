@@ -3,6 +3,7 @@ package com.zhurilo.pitter.controller;
 import com.zhurilo.pitter.model.User;
 import com.zhurilo.pitter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/home/signup")
-    public String signupSubmit(@RequestParam String name, @RequestParam String surname, @RequestParam Date dateOfBirth,
+    public String signupSubmit(@RequestParam String name, @RequestParam String surname, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth,
                                @RequestParam String email, @RequestParam String password) {
         User user = new User();
         user.setName(name);

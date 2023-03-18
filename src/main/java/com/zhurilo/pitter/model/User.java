@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 @Entity
@@ -30,6 +32,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "Date of birth")
     private Date dateOfBirth;
 }

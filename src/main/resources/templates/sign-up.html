@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
@@ -33,8 +33,12 @@
                         <label for="surname">Your surname</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control rounded-3" id="dateOfBirth" placeholder="Date of birth"
-                               name="dateOfBirth" required>
+                        <input type="date" class="form-control rounded-3" id="dateOfBirth" placeholder="Date of birth" min="1900-01-01" max=""
+                               name="dateOfBirth" required/>
+                        <script>
+                            const today = new Date().toISOString().split('T')[0];
+                            document.getElementById('dateOfBirth').setAttribute('max', today);
+                        </script>
                         <label for="dateOfBirth">Date of birth</label>
                     </div>
                     <div class="form-floating mb-3">
