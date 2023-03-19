@@ -19,9 +19,26 @@ public class HomeController {
         return "home";
     }
 
-//    @GetMapping("home/signup")
-//    public String getToSignUp(Model model){
-//        model.addAttribute("title", "Sign UP");
-//        return "sign-up";
-//    }
+    @GetMapping("home/signup")
+    public String getToSignUp(Model model){
+        model.addAttribute("title", "Sign UP");
+        return "sign-up";
+    }
+
+    @GetMapping("home/login")
+    public String getToLogin(Model model){
+        model.addAttribute("title", "Log IN");
+        return "login";
+    }
+    @GetMapping("home/about")
+    public String getToAbout(Model model){
+        model.addAttribute("title", "About");
+        return "about";
+    }
+    @GetMapping("home/mypage")
+    public String getToMyPage(Model model){
+        model.addAttribute("title", "My Page");
+        return "my-page";
+    }
+
 }
