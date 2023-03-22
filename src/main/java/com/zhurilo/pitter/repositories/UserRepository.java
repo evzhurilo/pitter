@@ -1,7 +1,9 @@
-package com.zhurilo.pitter.repository;
+package com.zhurilo.pitter.repositories;
 
-import com.zhurilo.pitter.model.User;
+import com.zhurilo.pitter.models.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User,Long> {
+    boolean existsUserByEmail(String email);
+
 }
