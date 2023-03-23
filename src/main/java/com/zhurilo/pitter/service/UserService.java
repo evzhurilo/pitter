@@ -1,7 +1,7 @@
-package com.zhurilo.pitter.services;
+package com.zhurilo.pitter.service;
 
-import com.zhurilo.pitter.models.User;
-import com.zhurilo.pitter.repositories.UserRepository;
+import com.zhurilo.pitter.entity.User;
+import com.zhurilo.pitter.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +16,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
     public User getUserById(Long id){
         return userRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("User not found"));
     }
 
-
-
-    public User createNewUser(String name, String surname,@DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth,
+    /* Can I use userDto in method createNewUser instead of
+    creating a new object User?
+     */
+    public void createNewUser(String name, String surname, @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth,
                               String email, String password){
         if(!userRepository.existsUserByEmail(email)) {
             User user = new User(name, surname, dateOfBirth, email, password);
@@ -33,7 +33,7 @@ public class UserService {
         -It's necessary to use {}, if you want to see the entire information
          */
             log.info("Creating a new user:{}", user);
-            return userRepository.save(user);
+            userRepository.save(user);
         }
         else {
             throw new RuntimeException("User with following email already exists");
