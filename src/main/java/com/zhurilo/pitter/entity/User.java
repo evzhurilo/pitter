@@ -1,4 +1,4 @@
-package com.zhurilo.pitter.models;
+package com.zhurilo.pitter.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@ToString
 public class User {
 
     @Id
@@ -44,19 +44,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    private List<Pitt> pittList = new ArrayList<>();
-    private Long previewPitt;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    public List<Pitt> pittList;
     private LocalDateTime dateOfCreation;
 
-    @PrePersist
-    private void init() {
-        dateOfCreation = LocalDateTime.now();
-    }
-
-    public void addPittToList(Pitt pitt) {
-        pitt.setUser(this);
-        pittList.add(pitt);
-    }
 }
 
