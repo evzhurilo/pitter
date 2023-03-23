@@ -1,15 +1,14 @@
-package com.zhurilo.pitter.models;
+package com.zhurilo.pitter.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
+@Builder
 @Entity
 @Table(name = "pitts")
 @RequiredArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Pitt {
 
@@ -19,11 +18,12 @@ public class Pitt {
 
     @Column(name = "pitts", columnDefinition = "text")
     @NonNull
-    private String pitt;
+    public String pitt;
 
     @Column(name = "likes_quantity")
     private Integer likesQuantity;
 
+    @JoinColumn(name = "user_id")
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private User user;
 
