@@ -9,8 +9,8 @@
 <header th:insert="blocks/header::header"></header>
 <h1>User information:</h1>
 <p><b>Username:</b> <span th:text="${user.name}"></span></p>
-<form action="/home/mypage/{id}" method="post">
-<input type="text">
+<form th:action="@{/home/mypage/__${user.id}__}" method="post">
+<input type="text" id="pitt" name="pitt" required>
 <button type="submit">Pitt</button>
 </form>
 <footer th:insert="blocks/footer::footer"></footer>
