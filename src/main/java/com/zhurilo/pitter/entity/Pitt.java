@@ -3,8 +3,8 @@ package com.zhurilo.pitter.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Builder
 @Entity
+@Builder
 @Table(name = "pitts")
 @RequiredArgsConstructor
 @NoArgsConstructor

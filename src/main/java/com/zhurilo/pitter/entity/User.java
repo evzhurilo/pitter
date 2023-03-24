@@ -2,14 +2,11 @@ package com.zhurilo.pitter.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-@Configuration
 @Entity
 @Table(name = "users")
 @Data
@@ -45,7 +42,7 @@ public class User {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    public List<Pitt> pittList;
+    private List<Pitt> pittList;
     private LocalDateTime dateOfCreation;
 
 }
