@@ -2,6 +2,7 @@ package com.zhurilo.pitter.controller;
 
 import com.zhurilo.pitter.convertor.UserConvertor;
 import com.zhurilo.pitter.dto.UserDto;
+import com.zhurilo.pitter.service.PittService;
 import com.zhurilo.pitter.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,29 +20,33 @@ import java.util.Date;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private final UserService userService;
+    @Autowired
+    private final PittService pittService;
 
     @Autowired
-    UserConvertor userConvertor;
+    private final UserConvertor userConvertor;
+
 
     @GetMapping("/home/signup")
     public String showAddUserForm(Model model) {
-        model.addAttribute("title","Registration");
+        model.addAttribute("title", "Registration");
         return "sign-up";
     }
 
     @PostMapping("/home/signup")
-    public String signupSubmit(@RequestParam String name, @RequestParam String surname, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth,
+    public String signupSubmit(@RequestParam String name, @RequestParam String surname, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth,
                                @RequestParam String email, @RequestParam String password) {
-        userService.createNewUser(name,surname,dateOfBirth,email,password);
+        userService.createNewUser(name, surname, dateOfBirth, email, password);
         return "redirect:/home";
     }
 
     @GetMapping("/home/mypage/{id}")
-    public String goToMyPage(@PathVariable Long id,Model model) {
+    public String goToMyPage(@PathVariable Long id, Model model) {
         UserDto userDto = userConvertor.toUserDto(userService.getUserById(id));
-        model.addAttribute("title","User id: "+id);
-        model.addAttribute("user",userDto);
+        model.addAttribute("title", "User id: " + id);
+        model.addAttribute("user", userDto);
+        model.addAttribute("allUsersPitts", pittService.getAllUsersPitts(id));
         return "my-page";
     }
 
