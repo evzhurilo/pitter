@@ -13,6 +13,9 @@
 <input type="text" id="pitt" name="pitt" required>
 <button type="submit">Pitt</button>
 </form>
+<ul>
+    <li th:each="pitt : ${allUsersPitts}" th:text="${pitt}"></li>
+</ul>
 <footer th:insert="blocks/footer::footer"></footer>
 </body>
 </html>
