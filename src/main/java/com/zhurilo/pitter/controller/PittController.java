@@ -21,9 +21,7 @@ public class PittController {
     @PostMapping("/home/mypage/{id}")
     public String makePitt(@PathVariable Long id, @RequestParam String pitt) {
         User user = userService.getUserById(id);
-        pittService.createPitt(pitt,user);
-        return "redirect:/home";
+        pittService.createPitt(pitt, user);
+        return "redirect:/home/mypage/{id}";
     }
-
-
 }

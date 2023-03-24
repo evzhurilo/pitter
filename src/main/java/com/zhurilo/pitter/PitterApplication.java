@@ -20,10 +20,9 @@ These components can be classes annotated with @Component (or its descendants), 
 })
 @EnableJpaRepositories(basePackages = "com.zhurilo.pitter.repository")
 //allow spring to find repositories from repository package
-@EntityScan(basePackages = "com.zhurilo.pitter.entities")
+@EntityScan(basePackages = "com.zhurilo.pitter.entity")
 //allow spring to find entities from entity package
 public class PitterApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(PitterApplication.class, args);
     }
