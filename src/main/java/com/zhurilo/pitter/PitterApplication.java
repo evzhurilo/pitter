@@ -16,7 +16,8 @@ These components can be classes annotated with @Component (or its descendants), 
 @ComponentScan({
         "com.zhurilo.pitter.convertor",
         "com.zhurilo.pitter.controller",
-        "com.zhurilo.pitter.service"
+        "com.zhurilo.pitter.service",
+        "com.zhurilo.pitter.config"
 })
 @EnableJpaRepositories(basePackages = "com.zhurilo.pitter.repository")
 //allow spring to find repositories from repository package
